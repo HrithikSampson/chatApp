@@ -2,7 +2,7 @@ let autoIncrement = 0;
 userList = [];
 function addUser(socket,username,room) {
         let user;
-        if(userList.some(username)){
+        if(userList.some((user)=>{return user.name===username})){
                 user = userList.filter((user)=>{return user.name===username})[0];
         }
         else{
@@ -20,7 +20,7 @@ function addUser(socket,username,room) {
 }
 function getRoomList(username){
         let user;
-        if(userList.some(username)){
+        if(userList.some((user)=>{return user.name===username})){
                 user = userList.filter((user)=>{return user.name===username})[0];
         }
         if(!user){
@@ -30,7 +30,7 @@ function getRoomList(username){
 }
 function removeUserFromRoom(username,room){
 let user;
-        if(userList.some(username)){
+        if(userList.some((user)=>{return user.name===username})){
                 user = userList.filter((user)=>{return user.name===username})[0];
                 user.rooms = user.rooms.filter((room1)=>{return room1!=room});
         }

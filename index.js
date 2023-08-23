@@ -2,11 +2,10 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
-const io = require('socket.io');
+const io = require('socket-io');
 const socket = io();
 const {addUser,getRoomList,removeUserFromRoom} = require('user.js');
 io.on("connection",socket=>{
-
         socket.on('joinRoom',({username,room})=>{
                 const addedUser = addUser(socket,username,room);
                 socket.broadcast.to(socket.id).emit('listRooms',getRoomList(username));
